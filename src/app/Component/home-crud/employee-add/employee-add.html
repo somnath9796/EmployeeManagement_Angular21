@@ -1,0 +1,137 @@
+<div class="container mt-4">
+    <div class="card shadow-sm employee-form-card">
+        <div class="card-header">
+            <h3>
+                {{ id === 0 ? 'Add Employee' : "Edit Employee" }}
+            </h3>
+        </div>
+
+        <div class="card-body">
+
+            <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+
+                <div class="row">
+                    <div class="col-md-6 my-3">
+                        <label class="form-label" for="employeeName">
+                            Employee Name : <span style="color: red;">*</span>
+                        </label>
+                        <input type="text" id="employeeName" class="form-control" formControlName="employeeName">
+
+                        @if(employeeForm.get('employeeName')?.touched &&
+                        employeeForm.get('employeeName')?.hasError('required'))
+                        {
+                        <span class="text-danger">
+                            Employee Name is Required
+                        </span>
+                        }
+                    </div>
+
+                    <div class="col-md-6 my-3">
+                        <label class="form-label" for="employeeEmail">
+                            Employee Email <span style="color: red;">*</span>:
+                        </label>
+                        <input type="email" id="employeeEmail" class="form-control" formControlName="employeeEmail">
+
+                        @if(employeeForm.get('employeeEmail')?.touched &&
+                        employeeForm.get('employeeEmail')?.hasError('required'))
+                        {
+                        <span class="text-danger">
+                            Employee Email Is Required
+                        </span>
+                        }
+
+                        @if(employeeForm.get('employeeEmail')?.touched &&
+                        employeeForm.get('employeeEmail')?.hasError('email'))
+                        {
+                        <span class="text-danger">
+                            Please Enter Valid Email Address
+                        </span>
+                        }
+                    </div>
+
+                    <div class="col-md-6 my-3">
+                        <label class="form-label" for="employeeDepartment">
+                            Employee Department<span style="color: red;">*</span>:
+                        </label>
+                        <select formControlName="employeeDepartment" class="form-select">
+                            <option value="">Select Department</option>
+                            <option value="IT">IT</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Sales">Sales</option>
+                            <option value="HR">HR</option>
+                            <option value="Finance">Finance</option>
+                        </select>
+
+                        @if(employeeForm.get('employeeDepartment')?.touched &&
+                        employeeForm.get('employeeDepartment')?.hasError('required'))
+                        {
+                        <span class="text-danger">
+                            Please Select Department
+                        </span>
+                        }
+                    </div>
+
+                    <div class="col-md-6 my-3">
+                        <label class="form-label" for="salary">
+                            Employee Salary <span style="color: red;">*</span>:
+                        </label>
+
+                        <input type="number" id="salary" class="form-control" formControlName="salary">
+
+                        @if(employeeForm.get('salary')?.touched && employeeForm.get('salary')?.hasError('required'))
+                        {
+                        <span class="text-danger">
+                            Salary Is Required
+                        </span>
+                        }
+                        @if(employeeForm.get('salary')?.touched && employeeForm.get('salary')?.hasError('min'))
+                        {
+                        <span class="text-danger">
+                            Min Salary Is 10000
+                        </span>
+                        }
+                        @if(employeeForm.get('salary')?.touched && employeeForm.get('salary')?.hasError('max'))
+                        {
+                        <span class="text-danger">
+                            Max Salary Is 1000000
+                        </span>
+                        }
+
+                    </div>
+
+                    <div class="col-md-6 my-3">
+                        <label class="form-label" for="dateOfJoining">
+                            Employee DOJ :
+                        </label>
+
+                        <input type="date" id="dateOfJoining" class="form-control" formControlName="dateOfJoining">
+
+                        @if(employeeForm.get('dateOfJoining')?.touched &&
+                        employeeForm.get('dateOfJoining')?.hasError('required'))
+                        {
+                        <span class="text-danger">
+                            Enter Date Of Joining
+                        </span>
+                        }
+                    </div>
+
+                    <div class="col-md-6 my-3">
+
+                        <input type="checkbox" id="isActive" class="form-check-input mx-2" formControlName="isActive">
+
+                        <label class="form-label" for="isActive">
+                            Is Active
+                        </label>
+                    </div>
+
+                    <div class="col-md-6 mt-3">
+                        <button type="submit" [class]="id === 0 ? 'btn btn-success' : 'btn btn-secondary'">
+                            {{id == 0 ? 'Save' : "Update"}}
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

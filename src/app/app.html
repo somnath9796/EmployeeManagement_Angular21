@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+
+    <a class="navbar-brand" routerLink="/">Employee Management</a>
+
+    <div class="navbar-nav">
+      <a class="nav-link" routerLink="/">Home</a> &nbsp; &nbsp;
+      <a class="nav-link" routerLink="/employee">Employees</a> &nbsp; &nbsp;
+      <a class="nav-link" routerLink="/employee-form">Employee Form</a> &nbsp; &nbsp;
+      <!-- <a routerLink="/employee-add">Add Employee</a> -->
+      <a class="nav-link" routerLink="/employee-list">Employee List</a>
+    </div>
+  </div>
+</nav>
+<!-- <p><strong>app.route.ts : </strong>URL Path aur component ki mapping karta h</p>
+<p><strong>router-outlet : </strong>matched component display karne ka placeholder hai.</p>
+<p><strong>RouterLink : </strong>Angular application me component/page navigation ke liye use hota hai.</p> -->
+
+<!-- <h2>Interpolation Data Binding: {{Interpolation}}</h2>
+<h3>{{Pagetitle}}</h3>
+<p>{{PageDescription}}</p>
+<p>Event binding is used to send events from the HTML template to the component. For example, 
+  using (click) to call a TypeScript method.</p>
+  <button (click)="onButtonClick()">Click For Button </button>
+<br/>
+<br/>
+<p>Property Binding : {{PropertyBinding}}</p>
+<button [disabled]="isButtonEnabled" (click)="onDisabledClicked()">Save Employee Data</button>
+<br/>
+<br/>
+<h3>Two Way Data Binding</h3>
+
+<input type="text" [(ngModel)]="employeeFName" placeholder="Enter Employee FName"><br/>
+<br/>
+<input type="text" [(ngModel)]="employeeLname" placeholder="Enter Employee LName"><br/>
+<br/>
+<input type="number" [(ngModel)]="employeeAge" placeholder="Enter Employee Age">
+
+<p>Employee First Name : {{employeeFName}}</p>
+<p>Employee Last Name : {{employeeLname}}</p>
+<p>Employee Age : {{employeeAge}}</p> -->
+
+
+<router-outlet></router-outlet>

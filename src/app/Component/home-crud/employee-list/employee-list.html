@@ -1,0 +1,115 @@
+<div class="container-fluid mt-4">
+  <div class="card shadow-sm employee-list-card">
+    <div class="card-body">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="mb-0">
+          EMPLOYEE LIST
+        </h1>
+
+        <a [routerLink]="['/employee-add',0]" class="btn btn-success">Add Employee</a>
+      </div>
+      <p class="text-muted mb-3">Total Records: <strong> {{ FilteredEmployees.length }} </strong></p>
+      <div class="row m-3">
+        <div class="col-md-2">
+          <div class="search-box">
+            <label>Search Box</label>
+            <input type="text" class="form-control" [(ngModel)]="searchText" (ngModelChange)="onSearchChange()"
+              placeholder="Search by name, department or email">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover align-middle w-100">
+              <thead>
+                <tr>
+                  <th>EmployeeId</th>
+                  <th (click)="sortByName()">Name ↕</th>
+                  <th>Email</th>
+                  <th>Department</th>
+                  <th (click)="sortBySalary()">Salary ↕</th>
+                  <th>Date Of Joining</th>
+                  <th>IsActive</th>
+                  <th colspan="2" class="text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                @if(isLoading)
+                {
+                <tr>
+                  <td colspan="9" class="text-center text-muted">
+                    Loading Employees
+                  </td>
+                </tr>
+                }
+
+                @else if (hasError) {
+                <tr>
+                  <td colspan="9" class="text-center text-danger">
+                    Unable to load employees. Please try again.
+
+                    <button class="btn btn-sm btn-outline-danger mt-2" (click)="loadEmployee()">
+                      Try Again
+                    </button>
+
+                  </td>
+                </tr>
+                }
+                @else if(FilteredEmployees.length === 0)
+                {
+                <tr>
+                  <td colspan="9" class="text-center text-muted">
+                    No Employees Found
+                  </td>
+                </tr>
+                }
+                @else {
+                @for (empData of getPaginatedEmployees(); track empData.employeeId) {
+                <tr>
+                  <td>{{ empData.employeeId }}</td>
+                  <td>{{ empData.employeeName }}</td>
+                  <td>{{ empData.employeeEmail }}</td>
+                  <td>{{ empData.employeeDepartment }}</td>
+                  <td>{{ empData.salary }}</td>
+                  <td>{{ empData.dateOfJoining | date : "dd/MM/yyyy" }}</td>
+                  <td>
+                    <!-- here [class]="empData.isActive : proper binding -->
+                    <span [class]="empData.isActive ? 'badge bg-success' : 'badge bg-danger'">
+                      {{ empData.isActive ? "Active" : "In-Active" }}
+                    </span>
+                  </td>
+                  <!-- here (click)= : Event binding -->
+                  <td><button class="btn btn-primary" (click)="editEmployeeData(empData.employeeId)">Edit</button></td>
+                  <td><button class="btn btn-danger" (click)="deleteEmployeeData(empData.employeeId)">Delete</button>
+                  </td>
+                </tr>
+                }
+                }
+              </tbody>
+            </table>
+
+            <!-- Pagination Section -->
+              <div class="d-flex justify-content-center mt-3">
+                <button class="btn btn-secondary me-2" (click)="goToPage(currentPageNo -1)" [disabled]="currentPageNo === 1">
+                  Previous
+                </button>
+
+                  <button *ngFor="let page of [].constructor(totalPages); let i = index" class="btn me-2"
+                    [class.btn-primary]="currentPageNo === i + 1" [class.btn-outline-primary]="currentPageNo !== i + 1"
+                    (click)="goToPage(i + 1)">
+                    {{i + 1}}
+                  </button>
+
+                  <button class="btn btn-secondary"
+                  (click)="goToPage(currentPageNo + 1)"
+                  [disabled]="currentPageNo === totalPages"> Next </button>
+
+              </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

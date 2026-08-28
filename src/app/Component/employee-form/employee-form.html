@@ -1,0 +1,57 @@
+<p>Employee Form Page</p>
+
+<form [formGroup]="employeeForm" (ngSubmit)="OnSubmit()">
+
+<label> Employee Name</label>
+<input type="text" formControlName="employeeName">
+@if(employeeForm.get('employeeName')?.touched && employeeForm.get('employeeName')?.hasError('required'))
+{
+    <span style="color: red;">Employee Name is required</span>
+}
+<br><br>
+<label> Employee Age</label>
+<input type="number" formControlName="employeeAge">
+@if(employeeForm.get('employeeAge')?.touched && employeeForm.get('employeeAge')?.hasError('required'))
+{
+    <span style="color: red;">Employee Age is required</span>
+}
+<br><br>
+<label> Employee City</label>
+<input type="text" formControlName="employeeCity">
+@if(employeeForm.get('employeeCity')?.touched && employeeForm.get('employeeCity')?.hasError('required'))
+{
+    <span style="color: red;">Employee City is required</span>
+}
+<br><br><br>
+<label> Employee Skills</label>
+@for (skill of skillControls; track $index)
+ {
+
+    <input  [formControl]="skill"> &nbsp;&nbsp;&nbsp;
+
+    <button type="button" (click)="removeSkill($index)">
+        Remove
+        </button>&nbsp;&nbsp;&nbsp;
+
+}
+<button type="button" (click)="addSkill()">AddSkill</button> &nbsp;&nbsp;&nbsp;
+
+<button type="submit">Save Employee</button> 
+
+</form>
+
+
+
+<hr>
+<h3>Form Value</h3>
+
+<pre>{{ employeeForm.value | json}}</pre>
+
+<span>Valid : {{employeeForm.valid}}</span><br>
+<span>In-Valid : {{employeeForm.invalid}}</span><br>
+
+<span>Dirty : {{employeeForm.dirty}}</span><br>
+<span>Pristine : {{employeeForm.pristine}}</span><br>
+
+<span>Touched : {{employeeForm.touched}}</span><br>
+<span>Un-Touched : {{employeeForm.untouched}}</span>
