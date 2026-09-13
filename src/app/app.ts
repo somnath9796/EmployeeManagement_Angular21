@@ -1,7 +1,8 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet,RouterLink } from '@angular/router';
+import { RouterOutlet,RouterLink,Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 // import { Employee } from './Component/employee/employee';
+import { Auth } from './services/auth';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './app.css'
 })
 export class App {
+
+  constructor(private auth : Auth, private route:Router){}
+
   protected readonly title = signal('EmployeeManagement');
 
  //Interpolation definition
@@ -31,6 +35,12 @@ export class App {
   onDisabledClicked(){
     alert("Employee data Saved");
   }
+  
+  logout(){
+    this.auth.Logout();
+    this.route.navigate(['/login-page']);
+  }
+
 
   //Two Way Binding
   employeeFName = "";

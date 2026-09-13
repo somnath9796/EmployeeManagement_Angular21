@@ -13,3 +13,12 @@ export interface APIResponse{
     status : number,
     message :string
 }
+
+export interface LoginModel{
+    UserName : string;
+    Password : string;
+}
+
+export interface LoginResponse{
+    token : string;
+}

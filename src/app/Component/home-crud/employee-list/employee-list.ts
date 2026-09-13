@@ -24,6 +24,7 @@ isLoading = false;
 hasError = false;
 currentPageNo : number = 1;
 currentPageSize : number = 3;
+pageSizeOptions : number[] = [3,5,10,15,20]
 
 constructor(private employeeService : EmployeeService,
   private cdr: ChangeDetectorRef,
@@ -123,6 +124,10 @@ goToPage(page : number) : void {
     if(page >= 1 && page <= this.totalPages){
       this.currentPageNo = page;
     }
+}
+
+changePageSize() : void {
+  this.currentPageNo = 1
 }
 
 onSearchChange():void{

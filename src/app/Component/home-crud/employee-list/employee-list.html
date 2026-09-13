@@ -13,9 +13,21 @@
         <div class="col-md-2">
           <div class="search-box">
             <label>Search Box</label>
-            <input type="text" class="form-control" [(ngModel)]="searchText" (ngModelChange)="onSearchChange()"
+            <input type="text" class="form-control mb-3" [(ngModel)]="searchText" (ngModelChange)="onSearchChange()"
               placeholder="Search by name, department or email">
           </div>
+        </div>
+
+        <div class="col-md-2">
+            <label for="currentPageSize" class="me-2">Records Per Page</label>
+          <select name="pagesize" id="pagesize" class="form-select" [(ngModel)]="currentPageSize"
+            (ngModelChange)="changePageSize()">
+        
+            @for(size of pageSizeOptions; track size){
+            <option [ngValue]="size">{{size}}</option>
+            }
+        
+          </select>
         </div>
       </div>
       <div class="row">
