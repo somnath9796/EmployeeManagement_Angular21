@@ -35,6 +35,3 @@ ng serve
 Future Enhancement
 - CI/CD pipeline
 - Cloud deployment
-
-CI/CD
-Cloud deployment, etc.
