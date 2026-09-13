@@ -32,8 +32,9 @@ ng serve
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6d7ea68c-9f91-4352-b2ad-a4351193c8f2" />
 
 
+Future Enhancement
+- CI/CD pipeline
+- Cloud deployment
 
-
-Future Enhancements
 CI/CD
 Cloud deployment, etc.
